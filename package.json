@@ -2,9 +2,6 @@
   "name": "svelte-todo",
   "version": "0.0.1",
   "type": "module",
-  "engines": {
-    "node": "20.x"
-  },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
@@ -19,7 +16,7 @@
   },
   "dependencies": {
     "@material/web": "^2.2.0",
-    "@sveltejs/adapter-vercel": "^5.4.8",
+    "@sveltejs/adapter-netlify": "^4.3.6",
     "axios": "^1.7.8"
   }
 }
