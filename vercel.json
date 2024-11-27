@@ -1,6 +1,9 @@
 {
   "version": 2,
   "builds": {
+    "functions": {
+      "runtime": "nodejs20.x"
+    },
     "env": {
       "NODE_VERSION": "nodejs20.x"
     }
