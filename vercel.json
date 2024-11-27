@@ -2,7 +2,7 @@
   "version": 2,
   "builds": {
     "env": {
-      "NODE_VERSION": "20.x"
+      "NODE_VERSION": "nodejs20.x"
     }
   }
 }
