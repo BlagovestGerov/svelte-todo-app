@@ -10,7 +10,7 @@
 
 <div class="filter-bar">
   <md-outlined-button
-  onkeydown={(e) => e.key === 'Enter' && filters.update((f) => ({ ...f, resolved: true }))}
+    onkeydown={(e) => e.key === 'Enter' && filters.update((f) => ({ ...f, resolved: true }))}
     onclick={() => filters.update((f) => ({ ...f, resolved: true }))}
     tabindex="0"
     role="button"
@@ -19,7 +19,7 @@
     Resolved
   </md-outlined-button>
   <md-outlined-button
-  onkeydown={(e) => e.key === 'Enter' && filters.update((f) => ({ ...f, resolved: false }))}
+    onkeydown={(e) => e.key === 'Enter' && filters.update((f) => ({ ...f, resolved: false }))}
     onclick={() => filters.update((f) => ({ ...f, resolved: false }))}
     tabindex="0"
     role="button"
