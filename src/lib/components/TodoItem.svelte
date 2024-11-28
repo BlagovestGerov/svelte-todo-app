@@ -1,6 +1,7 @@
 <script>
     import { todos } from '$lib/stores/todosStore';
-  
+    import '@material/web/button/outlined-button.js';
+
     export let todo;
   
     function toggleDone() {
@@ -18,9 +19,23 @@
   
   <div class="todo-item" style="border-left: 5px solid {todo.color || 'gray'}">
     <h3>{todo.title}</h3>
-    <button on:click={toggleDone}>
+    <md-outlined-button
+      onclick={toggleDone}
+      onkeydown={(e) => e.key === 'Enter' && toggleDone()}
+      tabindex="0"
+      role="button"
+      aria-label={todo.completed ? 'Unmark' : 'Mark as Done'}
+    >
       {todo.completed ? 'Unmark' : 'Mark as Done'}
-    </button>
-    <button on:click={removeTodo}>Remove</button>
+    </md-outlined-button>
+    <md-outlined-button
+      onclick={removeTodo}
+      onkeydown={(e) => e.key === 'Enter' && removeTodo()}
+      tabindex="0"
+      role="button"
+      aria-label="Mark all tasks as unresolved"
+    >
+    Remove
+    </md-outlined-button>
   </div>
   
