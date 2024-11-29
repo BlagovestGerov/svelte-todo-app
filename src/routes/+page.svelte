@@ -1,26 +1,23 @@
 <script>
-  import axios from "axios";
-  import { todos } from "$lib/stores/todosStore";
   import TodoList from "$lib/components/TodoList.svelte";
   import FilterBar from "$lib/components/FilterBar.svelte";
+  import { todos } from "$lib/stores/todosStore";
+  import { fetchTodos } from "$lib/services/todosService";
 
   let selectedTodoId = null;
 
-  async function fetchTodos() {
+  async function loadTodos() {
     try {
       console.log("Fetching todos...");
-      const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/todos"
-      );
-      console.log("Response data:", response.data);
-      todos.set(response.data.map((todo) => ({ ...todo, color: null })));
-      console.log("Todos set in store:", response.data);
+      const fetchedTodos = await fetchTodos();
+      console.log("Fetched todos:", fetchedTodos);
+      todos.set(fetchedTodos);
     } catch (error) {
       console.error("Error fetching todos:", error);
     }
   }
 
-  fetchTodos();
+  loadTodos();
 </script>
 
 <div>

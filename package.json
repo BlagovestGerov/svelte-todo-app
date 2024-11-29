@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@material/web": "^2.2.0",
-    "@sveltejs/adapter-netlify": "^4.3.6",
-    "axios": "^1.7.8"
+    "@sveltejs/adapter-netlify": "^4.3.6"
   }
 }
