@@ -1,5 +1,5 @@
 <script>
-  import { createMenuItems } from "$lib/constants/index.js";
+  import { createMenuItems } from "$lib/constants/helperConstants.js";
   import { todos } from "$lib/stores/todosStore";
 
   const menuItems = createMenuItems({

@@ -1,4 +1,4 @@
-import { API_URL } from "$lib/constants/Index.js";
+import { API_URL } from "$lib/constants/helperConstants.js";
 
 /**
  * Fetch all todos from the API
