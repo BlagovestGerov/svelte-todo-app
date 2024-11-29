@@ -1,7 +1,6 @@
 import { writable, derived } from "svelte/store";
 
 export const todos = writable([]);
-
 export const filters = writable({ color: null, resolved: null });
 
 export const filteredTodos = derived([todos, filters], ([$todos, $filters]) => {

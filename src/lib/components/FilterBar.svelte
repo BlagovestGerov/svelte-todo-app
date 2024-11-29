@@ -1,7 +1,8 @@
 <script>
-  import { filters, todos } from '$lib/stores/todosStore';
+  import { filters, todos } from "$lib/stores/todosStore";
+  import { getUniqueColors } from "$lib/utils/getUniqueColors";
 
-  $: colors = Array.from(new Set($todos.map((todo) => todo.color).filter(Boolean)));
+  $: colors = getUniqueColors($todos);
 
   function clearFilters() {
     filters.set({ color: null, resolved: null });
@@ -10,7 +11,8 @@
 
 <div class="filter-bar">
   <md-outlined-button
-    onkeydown={(e) => e.key === 'Enter' && filters.update((f) => ({ ...f, resolved: true }))}
+    onkeydown={(e) =>
+      e.key === "Enter" && filters.update((f) => ({ ...f, resolved: true }))}
     onclick={() => filters.update((f) => ({ ...f, resolved: true }))}
     tabindex="0"
     role="button"
@@ -19,7 +21,8 @@
     Resolved
   </md-outlined-button>
   <md-outlined-button
-    onkeydown={(e) => e.key === 'Enter' && filters.update((f) => ({ ...f, resolved: false }))}
+    onkeydown={(e) =>
+      e.key === "Enter" && filters.update((f) => ({ ...f, resolved: false }))}
     onclick={() => filters.update((f) => ({ ...f, resolved: false }))}
     tabindex="0"
     role="button"
@@ -29,7 +32,8 @@
   </md-outlined-button>
   {#each colors as color}
     <md-outlined-button
-    onkeydown={(e) => e.key === 'Enter' && filters.update((f) => ({ ...f, color }))}
+      onkeydown={(e) =>
+        e.key === "Enter" && filters.update((f) => ({ ...f, color }))}
       onclick={() => filters.update((f) => ({ ...f, color }))}
       tabindex="0"
       role="button"
@@ -39,7 +43,7 @@
     </md-outlined-button>
   {/each}
   <md-outlined-button
-  onkeydown={(e) => e.key === 'Enter' && clearFilters()}
+    onkeydown={(e) => e.key === "Enter" && clearFilters()}
     onclick={clearFilters}
     tabindex="0"
     role="button"
