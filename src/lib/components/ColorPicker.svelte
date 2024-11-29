@@ -1,40 +1,37 @@
 <script>
-  import { todos } from "$lib/stores/todosStore";
-
-  export let todoId = null; // The ID of the todo to color
-  export let isOpen = false; // Whether the modal is open
-  export let onClose; // Callback to close the modal
-
-  const colors = ["red", "blue", "green", "yellow", "purple", "orange"];
+  export let isOpen = false;
+  export let colors = ["red", "blue", "green", "yellow", "purple", "orange"];
+  export let onSelect;
+  export let onClose;
+  export let selectedColor = null;
 
   function selectColor(color) {
-    // Update the color for the specific todo
-    todos.update((current) =>
-      current.map((todo) => (todo.id === todoId ? { ...todo, color } : todo))
-    );
-    onClose(); // Close the modal after selection
+    onSelect(color);
+    onClose();
   }
 </script>
 
 {#if isOpen}
-  <div class="modal">
+  <div class="modal" role="dialog" aria-labelledby="color-picker-title">
     <div class="modal-content">
-      <h3>Select a Color</h3>
-      <div class="colors">
+      <h3 id="color-picker-title">Select a Color</h3>
+      <div class="colors" role="listbox">
         {#each colors as color}
           <div
             class="color"
             style="background-color: {color}"
             on:click={() => selectColor(color)}
-            role="button"
+            on:keydown={(e) => e.key === "Enter" && selectColor(color)}
+            role="option"
+            aria-selected={selectedColor === color}
             tabindex="0"
             aria-label={`Select ${color}`}
           ></div>
         {/each}
       </div>
-      <button on:click={onClose} aria-label="Close the color picker">
-        Close
-      </button>
+      <button on:click={onClose} aria-label="Close the color picker"
+        >Close</button
+      >
     </div>
   </div>
 {/if}
@@ -72,8 +69,9 @@
     transition: border-color 0.2s ease;
   }
 
-  .color:hover {
-    border-color: #999;
+  .color:hover,
+  .color:focus {
+    border-color: black;
   }
 
   button {

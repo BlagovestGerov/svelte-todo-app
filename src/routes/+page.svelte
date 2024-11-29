@@ -4,8 +4,6 @@
   import TodoList from "$lib/components/TodoList.svelte";
   import FilterBar from "$lib/components/FilterBar.svelte";
 
-  // State management for ColorPicker
-  let isColorPickerOpen = false;
   let selectedTodoId = null;
 
   async function fetchTodos() {
@@ -22,27 +20,10 @@
     }
   }
 
-  // Lifecycle hook to fetch todos on mount
   fetchTodos();
-
-  function openColorPicker(todoId) {
-    selectedTodoId = todoId;
-    isColorPickerOpen = true;
-  }
-
-  function closeColorPicker() {
-    isColorPickerOpen = false;
-  }
 </script>
 
 <div>
   <FilterBar />
-  <TodoList on:openColorPicker={openColorPicker} />
-  {#if isColorPickerOpen}
-    <ColorPicker
-      isOpen={isColorPickerOpen}
-      todoId={selectedTodoId}
-      onClose={closeColorPicker}
-    />
-  {/if}
+  <TodoList />
 </div>

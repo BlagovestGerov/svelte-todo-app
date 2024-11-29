@@ -7,6 +7,13 @@
   let isColorPickerOpen = false;
   let selectedTodoId = null;
 
+  function handleColorChange(color) {
+    todos.update((current) =>
+      current.map((t) => (t.id === selectedTodoId ? { ...t, color } : t))
+    );
+    closeColorPicker();
+  }
+
   function openColorPicker(todoId) {
     selectedTodoId = todoId;
     isColorPickerOpen = true;
@@ -40,11 +47,14 @@
   >
     Pick Color
   </md-outlined-button>
-  <ColorPicker
-    isOpen={isColorPickerOpen}
-    todoId={todo.id}
-    onClose={closeColorPicker}
-  />
+  {#if isColorPickerOpen}
+    <ColorPicker
+      onSelect={handleColorChange}
+      isOpen={isColorPickerOpen}
+      todoId={selectedTodoId}
+      onClose={closeColorPicker}
+    />
+  {/if}
   <md-outlined-button
     onclick={toggleDone}
     onkeydown={(e) => e.key === "Enter" && toggleDone()}
