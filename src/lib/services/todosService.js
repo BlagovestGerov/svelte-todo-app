@@ -1,13 +1,13 @@
 
-const API_URL = "https://jsonplaceholder.typicode.com/todos";
-
+const API_URL = import.meta.env.VITE_API_URL;
+console.log(import.meta.env.VITE_API_URL);
 /**
  * Fetch all todos from the API
  * @returns {Promise<Object[]>}
  */
 export async function fetchTodos() {
   try {
-    const response = await fetch(API_URL);
+    const response = await fetch(`${API_URL}/todos`);
 
     if(!response.ok) {
       throw new Error(`Failed to fetch todos: ${response.status}`);
