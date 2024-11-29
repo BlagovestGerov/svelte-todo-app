@@ -1,6 +1,7 @@
 <script>
-  import { todos } from '$lib/stores/todosStore';
-  import '@material/web/button/outlined-button.js';
+  import { todos } from "$lib/stores/todosStore";
+  import "@material/web/button/outlined-button.js";
+  import { createMenuItems } from "$lib/constants/index.js";
 
   function markAllResolved() {
     todos.update((current) =>
@@ -19,59 +20,44 @@
   }
 
   function addTodo() {
-    const title = prompt('Enter todo title:');
-    if (!title) return alert('Title cannot be empty');
+    const title = prompt("Enter todo title:");
+    if (!title) return alert("Title cannot be empty");
     todos.update((current) => [
       ...current,
       { id: Date.now(), title, completed: false, color: null },
     ]);
   }
+
+  const menuItems = createMenuItems({
+    markAllResolved,
+    markAllUnresolved,
+    removeAllTodos,
+    addTodo,
+  });
 </script>
 
 <div class="side-menu">
-  <md-outlined-button
-  onkeydown={(e) => e.key === 'Enter' && markAllResolved()}
-    onclick={markAllResolved}
-    tabindex="0"
-    role="button"
-    aria-label="Mark all tasks as resolved"
-  >
-    Mark All Resolved
-  </md-outlined-button>
-  <md-outlined-button
-  onkeydown={(e) => e.key === 'Enter' && markAllUnresolved()}
-    onclick={markAllUnresolved}
-    tabindex="0"
-    role="button"
-    aria-label="Mark all tasks as unresolved"
-  >
-    Mark All Unresolved
-  </md-outlined-button>
-  <md-outlined-button
-  onkeydown={(e) => e.key === 'Enter' && removeAllTodos()}
-    onclick={removeAllTodos}
-    tabindex="0"
-    role="button"
-    aria-label="Remove all tasks"
-  >
-    Remove All
-  </md-outlined-button>
-  <md-outlined-button
-  onkeydown={(e) => e.key === 'Enter' && addTodo()}
-    onclick={addTodo}
-    tabindex="0"
-    role="button"
-    aria-label="Add a new task"
-  >
-    Add Todo
-  </md-outlined-button>
+  {#each menuItems as { label, ariaLabel, onClick }}
+    <md-outlined-button
+      onkeydown={(e) => e.key === "Enter" && onClick()}
+      onclick={onClick}
+      tabindex="0"
+      role="button"
+      aria-label={ariaLabel}
+    >
+      {label}
+    </md-outlined-button>
+  {/each}
 </div>
 
 <style>
+  .side-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
   .side-menu md-outlined-button {
-    margin: 0.5rem 0;
-    display: block;
     width: 100%;
   }
 </style>
-

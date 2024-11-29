@@ -1,6 +1,5 @@
+import { API_URL } from "$lib/constants/Index.js";
 
-const API_URL = import.meta.env.VITE_API_URL;
-console.log(import.meta.env.VITE_API_URL);
 /**
  * Fetch all todos from the API
  * @returns {Promise<Object[]>}
