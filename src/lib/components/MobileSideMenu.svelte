@@ -14,10 +14,13 @@
     removeAllTodos: () => todos.set([]),
     addTodo: () => {
       const title = prompt("Enter todo title:");
-      if (!title) return alert("Title cannot be empty.");
+      if (!title) {
+        alert("Title cannot be empty.");
+        return;
+      }
       todos.update((todos) => [
-        ...todos,
         { id: Date.now(), title, completed: false },
+        ...todos,
       ]);
     },
   });
@@ -42,13 +45,13 @@
     font-size: 1rem;
     border: none;
     border-radius: 5px;
-    background-color: #6200ea;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     cursor: pointer;
     transition: background-color 0.3s;
   }
 
   .menu-item:hover {
-    background-color: #3700b3;
+    background-color: var(--primary-hover-color);
   }
 </style>
