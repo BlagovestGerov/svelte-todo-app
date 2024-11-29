@@ -23,19 +23,18 @@
   });
 </script>
 
-<div class="menu-container">
-  {#each menuItems as { label, ariaLabel, onClick }}
-    <button class="menu-item" on:click={onClick} aria-label={ariaLabel}>
-      {label}
-    </button>
+<div class="mobile-menu-container">
+  {#each menuItems as { label, onClick }}
+    <button class="menu-item" on:click={onClick}>{label}</button>
   {/each}
 </div>
 
 <style>
-  .menu-container {
+  .mobile-menu-container {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    padding: 1rem;
   }
 
   .menu-item {
