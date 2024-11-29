@@ -1,0 +1,36 @@
+/* General Variables for Colors */
+:root {
+    --primary-color: #6200ea;
+    --primary-hover-color: #3700b3;
+    --secondary-color: #ffffff;
+    --border-color: #e0e0e0;
+    --background-color: #fdfdfd;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-hover-color: rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Add any other global styles here */
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: #333333;
+  }
+  
+  /* Scrollbars */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 5px;
+  }
+  
+  /* Buttons (General Styling) */
+  button,
+  md-outlined-button {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  

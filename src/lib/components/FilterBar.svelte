@@ -56,10 +56,21 @@
 <style>
   .filter-bar {
     margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
   }
+
   .filter-bar md-outlined-button {
-    margin: 0.5rem 0;
-    display: block;
-    width: 100%;
+    margin: 0;
+    padding: 0.6rem 1.2rem;
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 8px;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    cursor: pointer;
   }
 </style>

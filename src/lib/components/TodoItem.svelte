@@ -36,8 +36,13 @@
   }
 </script>
 
-<div class="todo-item" style="border-left: 5px solid {todo.color || 'gray'}">
-  <h3>{todo.title}</h3>
+<div
+  class="todo-item"
+  style="border-left: 5px solid {todo.color || 'var(--primary-color)'}"
+>
+  <div class="todo-title">
+    <h3>{todo.title}</h3>
+  </div>
   <md-outlined-button
     onkeydown={(e) => e.key === "Enter" && openColorPicker(todo.id)}
     onclick={() => openColorPicker(todo.id)}
@@ -74,3 +79,75 @@
     Remove
   </md-outlined-button>
 </div>
+
+<style>
+  .todo-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--todo-color, var(--primary-color));
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--background-color);
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .todo-item:hover {
+    box-shadow: 0 4px 10px var(--shadow-hover-color);
+  }
+
+  .todo-title {
+    flex: 1;
+  }
+
+  .todo-item h3 {
+    margin: 0 0 10px;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+  }
+
+  .todo-item md-outlined-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 8px;
+    color: var(--secondary-color);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .todo-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 0.5rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    .todo-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .todo-title {
+      margin-bottom: 0.5rem;
+    }
+
+    .todo-item md-outlined-button {
+      width: 100%;
+      font-size: 0.8rem;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .todo-item md-outlined-button:last-child {
+      margin-bottom: 0;
+    }
+  }
+</style>

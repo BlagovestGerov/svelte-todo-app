@@ -1,6 +1,7 @@
 <script>
   import DesktopSideMenu from "$lib/components/SideMenu.svelte";
   import MobileSideMenu from "$lib/components/MobileSideMenu.svelte";
+  import "../global.css";
 
   let isMobileMenuOpen = false;
 
