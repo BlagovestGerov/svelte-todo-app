@@ -1,6 +1,22 @@
 <script>
+  import AddTodoModal from "./AddTodoModal.svelte";
   import { createMenuItems } from "$lib/constants/helperConstants.js";
   import { todos } from "$lib/stores/todosStore";
+  import { onMount } from "svelte";
+
+  let isDialogOpen = false;
+  let pageLoaded = false;
+
+  onMount(() => {
+    pageLoaded = true;
+  });
+
+  function addTodoCallback(newTodoTitle) {
+    todos.update((currentTodos) => [
+      { id: Date.now(), title: newTodoTitle, completed: false },
+      ...currentTodos,
+    ]);
+  }
 
   const menuItems = createMenuItems({
     markAllResolved: () =>
@@ -13,26 +29,30 @@
       ),
     removeAllTodos: () => todos.set([]),
     addTodo: () => {
-      const title = prompt("Enter todo title:");
-      if (!title) {
-        alert("Title cannot be empty.");
-        return;
-      }
-      todos.update((currentTodos) => [
-        { id: Date.now(), title, completed: false },
-        ...currentTodos,
-      ]);
+      isDialogOpen = true;
     },
   });
+
+  function closeModal() {
+    isDialogOpen = false;
+  }
 </script>
 
 <div class="menu-container">
   {#each menuItems as { label, ariaLabel, onClick }}
-    <button class="menu-item" on:click={onClick} aria-label={ariaLabel}>
+    <button class="menu-item" onclick={onClick} aria-label={ariaLabel}>
       {label}
     </button>
   {/each}
 </div>
+
+{#if pageLoaded}
+  <AddTodoModal
+    isOpen={isDialogOpen}
+    onClose={closeModal}
+    onAddTodo={addTodoCallback}
+  />
+{/if}
 
 <style>
   .menu-container {
